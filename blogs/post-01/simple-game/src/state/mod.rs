@@ -26,14 +26,6 @@ pub struct State {
     box_moving: Moving, // Direction the box is moving.
 }
 
-/// new constructs a new game state.
-pub fn new() -> State {
-    return State {
-        box_y: FLOOR_COLLISION,
-        box_moving: Moving::Not,
-    };
-}
-
 /// State implementation of the GameState trait.
 impl blib::GameState for State {
     fn tick(&mut self, bterm: &mut blib::BTerm) {
@@ -44,6 +36,14 @@ impl blib::GameState for State {
 
 /// Method set for the State type.
 impl State {
+    /// new constructs a new game state.
+    pub fn new() -> Self {
+        Self {
+            box_y: FLOOR_COLLISION,
+            box_moving: Moving::Not,
+        }
+    }
+
     /// keyboard_input handles the processing of keyboard input.
     fn keyboard_input(&mut self, bterm: &mut blib::BTerm) {
         match bterm.key {
